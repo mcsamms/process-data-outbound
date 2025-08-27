@@ -26,6 +26,22 @@ bun dev
 
 Open [http://localhost:3077](http://localhost:3077) with your browser to see the result.
 
+### Application Routes
+
+Once running:
+
+| Page | URL |
+|------|-----|
+| Accounts (Cleaned) | http://localhost:3077/accounts |
+| Outbound Engagement (Enriched) | http://localhost:3077/outbound |
+
+Features on each page:
+- Pagination in steps of 100 (Prev / Next buttons).
+- Dropdown filters for every column (select a value or (All)).
+- Clear Filters button.
+- JSON preview of the current filtered slice.
+
+
 ## Data Cleaning Step
 
 This project includes a repeatable data cleaning script that processes `data/assessment_account_dataset.csv` and generates `data/cleaned_assessment_data.json`.
