@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 3077",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "process:data": "bun scripts/processAccountData.ts",
+    "process:outbound": "bun scripts/processOutbound.ts"
   },
   "dependencies": {
     "react": "19.1.0",
