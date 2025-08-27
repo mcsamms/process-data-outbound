@@ -55,30 +55,131 @@ export function DataBrowser({
   // Unique values per column (stringify non-strings)
   const uniques = useMemo(() => {
     const map: Record<string, string[]> = {};
+    // Special bucketing for Accounts view
+    const isAccounts = /Accounts/i.test(title);
+    // Employee buckets mirroring server logic
+    const employeeBuckets = [
+      { label: "1–10", min: 1, max: 10 },
+      { label: "11–25", min: 11, max: 25 },
+      { label: "26–50", min: 26, max: 50 },
+      { label: "51–100", min: 51, max: 100 },
+      { label: "101–250", min: 101, max: 250 },
+      { label: "251–500", min: 251, max: 500 },
+      { label: "501–1000", min: 501, max: 1000 },
+      { label: "1001–2000", min: 1001, max: 2000 },
+      { label: "2001–3000", min: 2001, max: 3000 },
+      { label: "3001–4000", min: 3001, max: 4000 },
+      { label: "4001–5000", min: 4001, max: 5000 },
+      { label: "5001+", min: 5001, max: Infinity },
+    ];
+    const arrBuckets = Array.from({ length: 20 }, (_, i) => ({
+      label: `${i * 10000}–${(i + 1) * 10000 - 1}`,
+      min: i * 10000,
+      max: (i + 1) * 10000 - 1,
+    }));
+    arrBuckets.push({ label: `200000+`, min: 200000, max: Infinity });
+
     allColumns.forEach((col) => {
       const set = new Set<string>();
-      data.forEach((row) => {
-        const v = row[col];
-        if (v === null || typeof v === "undefined" || v === "") return;
-        set.add(String(v));
-      });
+      if (isAccounts && col === "employee_count") {
+        // collect bucket labels present
+        const seen = new Set<string>();
+        data.forEach((row) => {
+          const raw = Number(row[col]);
+          if (!Number.isFinite(raw)) return;
+          const bucket = employeeBuckets.find(
+            (b) => raw >= b.min && raw <= b.max,
+          );
+          if (bucket) seen.add(bucket.label);
+        });
+        const sorted = [...seen].sort((a, b) => a.localeCompare(b));
+        sorted.forEach((l) => {
+          set.add(l);
+        });
+      } else if (isAccounts && col === "arr") {
+        const seen = new Set<string>();
+        data.forEach((row) => {
+          const raw = Number(row[col]);
+          if (!Number.isFinite(raw)) return;
+          const bucket = arrBuckets.find((b) => raw >= b.min && raw <= b.max);
+          if (bucket) seen.add(bucket.label);
+        });
+        const sortedArr = [...seen].sort((a, b) => {
+          const aMin = parseInt(a.split("–")[0]);
+          const bMin = parseInt(b.split("–")[0]);
+          return aMin - bMin;
+        });
+        sortedArr.forEach((l) => {
+          set.add(l);
+        });
+      } else {
+        data.forEach((row) => {
+          const v = row[col];
+          if (v === null || typeof v === "undefined" || v === "") return;
+          set.add(String(v));
+        });
+      }
       map[col] = Array.from(set)
         .sort((a, b) => a.localeCompare(b))
         .slice(0, 2000); // safeguard
     });
     return map;
-  }, [data, allColumns]);
+  }, [data, allColumns, title]);
 
   // Apply filters
   const filtered = useMemo(() => {
+    const isAccounts = /Accounts/i.test(title);
+    // Reconstruct bucket definitions (duplicate minimal logic inside memo scope)
+    const employeeBuckets = [
+      { label: "1–10", min: 1, max: 10 },
+      { label: "11–25", min: 11, max: 25 },
+      { label: "26–50", min: 26, max: 50 },
+      { label: "51–100", min: 51, max: 100 },
+      { label: "101–250", min: 101, max: 250 },
+      { label: "251–500", min: 251, max: 500 },
+      { label: "501–1000", min: 501, max: 1000 },
+      { label: "1001–2000", min: 1001, max: 2000 },
+      { label: "2001–3000", min: 2001, max: 3000 },
+      { label: "3001–4000", min: 3001, max: 4000 },
+      { label: "4001–5000", min: 4001, max: 5000 },
+      { label: "5001+", min: 5001, max: Infinity },
+    ];
+    const arrBuckets = Array.from({ length: 20 }, (_, i) => ({
+      label: `${i * 10000}–${(i + 1) * 10000 - 1}`,
+      min: i * 10000,
+      max: (i + 1) * 10000 - 1,
+    }));
+    arrBuckets.push({ label: `200000+`, min: 200000, max: Infinity });
+
+    function matchBucket(
+      val: number,
+      label: string,
+      bucketDefs: { label: string; min: number; max: number }[],
+    ) {
+      const def = bucketDefs.find((b) => b.label === label);
+      if (!def) return false;
+      return val >= def.min && val <= def.max;
+    }
+
     return data.filter((row) => {
       for (const [col, val] of Object.entries(filters)) {
         if (!val) continue;
-        if (String(row[col]) !== val) return false;
+        const cell = row[col];
+        if (isAccounts && col === "employee_count") {
+          const num = Number(cell);
+          if (!Number.isFinite(num) || !matchBucket(num, val, employeeBuckets))
+            return false;
+        } else if (isAccounts && col === "arr") {
+          const num = Number(cell);
+          if (!Number.isFinite(num) || !matchBucket(num, val, arrBuckets))
+            return false;
+        } else if (String(cell) !== val) {
+          return false;
+        }
       }
       return true;
     });
-  }, [data, filters]);
+  }, [data, filters, title]);
 
   // Pagination slice
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));

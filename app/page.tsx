@@ -1,4 +1,4 @@
-import CoverageSummary from "@/components/CoverageSummary";
+// Home dashboard simplified; detailed metrics moved to /outbound-metrics
 
 export default function Home() {
   return (
@@ -18,7 +18,27 @@ export default function Home() {
           </a>
         </nav>
       </header>
-      <CoverageSummary />
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold">Explore</h2>
+        <ul className="list-disc ml-5 space-y-2">
+          <li>
+            <a className="underline" href="/outbound-metrics">
+              Outbound Touch Metrics
+            </a>{" "}
+            – coverage & engagement ARR tables
+          </li>
+          <li>
+            <a className="underline" href="/accounts">
+              Accounts Data Browser
+            </a>
+          </li>
+          <li>
+            <a className="underline" href="/outbound">
+              Outbound Engagement Browser
+            </a>
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }

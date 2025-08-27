@@ -12,9 +12,11 @@
     "process:outbound": "bun scripts/processOutbound.ts"
   },
   "dependencies": {
+    "chart.js": "^4.4.1",
+    "next": "15.5.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "typescript": "^5",
