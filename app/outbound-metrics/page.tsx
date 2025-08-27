@@ -11,26 +11,12 @@ export default function OutboundTouchMetricsPage() {
           Account coverage, engagement tier performance, and ARR by employee
           size buckets.
         </p>
-        <nav className="flex gap-4 text-sm">
-          <a className="underline hover:no-underline" href="/">
-            Dashboard
-          </a>
-          <a className="underline hover:no-underline" href="/accounts">
-            Accounts
-          </a>
-          <a className="underline hover:no-underline" href="/outbound">
-            Outbound
-          </a>
-        </nav>
       </header>
       <CoverageSummary />
       <EngagementCoverageTable />
       <EmployeeBucketArrTable />
       <section>
-        <a
-          href="/outbound-metrics/charts"
-          className="underline text-sm hover:no-underline"
-        >
+        <a href="/charts" className="underline text-sm hover:no-underline">
           View Interactive Charts →
         </a>
       </section>

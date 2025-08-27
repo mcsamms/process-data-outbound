@@ -9,14 +9,6 @@ export default function Home() {
           Overview of account coverage by outbound engagement plus ARR
           distribution statistics.
         </p>
-        <nav className="flex gap-4 text-sm">
-          <a className="underline hover:no-underline" href="/accounts">
-            Accounts
-          </a>
-          <a className="underline hover:no-underline" href="/outbound">
-            Outbound
-          </a>
-        </nav>
       </header>
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Explore</h2>
@@ -35,6 +27,11 @@ export default function Home() {
           <li>
             <a className="underline" href="/outbound">
               Outbound Engagement Browser
+            </a>
+          </li>
+          <li>
+            <a className="underline" href="/charts">
+              Interactive Charts
             </a>
           </li>
         </ul>

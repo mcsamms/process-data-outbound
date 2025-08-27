@@ -27,7 +27,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen flex flex-col">
+          <nav className="bg-slate-900 text-slate-100 text-sm px-6 py-3 flex gap-5 items-center shadow">
+            <a className="font-semibold tracking-wide" href="/">
+              Dashboard
+            </a>
+            <a href="/accounts" className="hover:underline">
+              Accounts
+            </a>
+            <a href="/outbound" className="hover:underline">
+              Outbound
+            </a>
+            <a href="/outbound-metrics" className="hover:underline">
+              Touch Metrics
+            </a>
+            <a href="/charts" className="hover:underline">
+              Charts
+            </a>
+          </nav>
+          <div className="flex-1">{children}</div>
+        </div>
       </body>
     </html>
   );
