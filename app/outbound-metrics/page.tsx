@@ -1,6 +1,7 @@
 import CoverageSummary from "@/components/CoverageSummary";
 import EmployeeBucketArrTable from "@/components/EmployeeBucketArrTable";
 import EngagementCoverageTable from "@/components/EngagementCoverageTable";
+import TouchTimingTable from "@/components/TouchTimingTable";
 
 export default function OutboundTouchMetricsPage() {
   return (
@@ -15,6 +16,7 @@ export default function OutboundTouchMetricsPage() {
       <CoverageSummary />
       <EngagementCoverageTable />
       <EmployeeBucketArrTable />
+      <TouchTimingTable />
       <section>
         <a href="/charts" className="underline text-sm hover:no-underline">
           View Interactive Charts →
