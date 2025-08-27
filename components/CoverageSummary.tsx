@@ -15,7 +15,7 @@ export default async function CoverageSummary() {
     const rightWins = rightVal > leftVal;
     const baseCell = "py-2 px-3 align-top transition";
     const highlight =
-      "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-50 dark:bg-indigo-900/30";
+      "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-600/30 dark:bg-indigo-500/30 text-white";
     return (
       <tr key={label}>
         <th className="text-left font-medium py-2 px-3">{label}</th>
@@ -30,8 +30,8 @@ export default async function CoverageSummary() {
   };
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-semibold">Account Coverage</h2>
-      <div className="text-sm">
+      <h2 className="text-xl font-semibold text-white">Account Coverage</h2>
+      <div className="text-sm text-slate-300">
         <p className="mb-2">
           Touched accounts are those with at least one outbound engagement
           (domain match in the outbound dataset).
@@ -46,7 +46,7 @@ export default async function CoverageSummary() {
       <div className="overflow-auto border border-slate-300 dark:border-slate-600 rounded">
         <table className="min-w-[480px] text-sm">
           <thead>
-            <tr className="bg-slate-100 dark:bg-slate-800">
+            <tr className="bg-slate-100 dark:bg-slate-800 text-slate-900">
               <th className="text-left font-semibold p-2">ARR Stat</th>
               <th className="text-left font-semibold p-2">Touched</th>
               <th className="text-left font-semibold p-2">Untouched</th>

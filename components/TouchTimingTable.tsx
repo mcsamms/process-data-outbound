@@ -4,7 +4,7 @@ import { computeTouchTiming, formatDays, formatPct } from "@/lib/touchTiming";
 export default async function TouchTimingTable() {
   const data = await computeTouchTiming();
   const highlight =
-    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-50 dark:bg-indigo-900/30";
+    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-600/30 dark:bg-indigo-500/30 text-white";
   // Determine maxes for highlighting
   const maxArr = Math.max(...data.buckets.map((b) => b.avgArr ?? -Infinity));
   const maxWin = Math.max(...data.buckets.map((b) => b.winRate ?? -Infinity));
@@ -12,17 +12,17 @@ export default async function TouchTimingTable() {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-semibold">
+      <h2 className="text-xl font-semibold text-white">
         Touch Timing (Signup → First Outbound)
       </h2>
-      <p className="text-sm text-slate-600 dark:text-slate-400 max-w-prose">
+      <p className="text-sm text-slate-300 max-w-prose">
         Accounts bucketed by days from signup to first outbound email send.
         Early ≤30d, Medium 31–90d, Late &gt;90d, Never touched = no outbound.
       </p>
       <div className="overflow-auto border border-slate-300 dark:border-slate-600 rounded">
         <table className="min-w-[680px] text-sm">
           <thead>
-            <tr className="bg-slate-100 dark:bg-slate-800">
+            <tr className="bg-slate-100 dark:bg-slate-800 text-slate-900">
               <th className="text-left font-semibold p-2">Bucket</th>
               <th className="text-left font-semibold p-2">Accounts</th>
               <th className="text-left font-semibold p-2">% of Total</th>

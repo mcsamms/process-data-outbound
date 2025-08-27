@@ -16,19 +16,21 @@ export default async function EngagementCoverageTable() {
 
   const cellBase = "py-2 px-3 align-top text-sm";
   const highlight =
-    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-50 dark:bg-indigo-900/30";
+    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-600/30 dark:bg-indigo-500/30 text-white";
 
   return (
     <section className="space-y-3">
-      <h2 className="text-xl font-semibold">Engagement Coverage & ARR</h2>
-      <p className="text-sm text-slate-600 dark:text-slate-400 max-w-prose">
+      <h2 className="text-xl font-semibold text-white">
+        Engagement Coverage & ARR
+      </h2>
+      <p className="text-sm text-slate-300 max-w-prose">
         Distinct account coverage by deepest outbound engagement action plus
         average ARR and win rate (Closed Won % where available).
       </p>
       <div className="overflow-auto border border-slate-300 dark:border-slate-600 rounded">
         <table className="min-w-[560px] text-sm">
           <thead>
-            <tr className="bg-slate-100 dark:bg-slate-800">
+            <tr className="bg-slate-100 dark:bg-slate-800 text-slate-900">
               <th className="text-left font-semibold p-2">Group</th>
               <th className="text-left font-semibold p-2">Accounts</th>
               <th className="text-left font-semibold p-2">Avg ARR</th>

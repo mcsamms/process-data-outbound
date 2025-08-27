@@ -4,17 +4,17 @@ export default async function EmployeeBucketArrTable() {
   const data = await computeEmployeeBucketArr();
   const baseCell = "py-2 px-3 align-top text-sm";
   const highlight =
-    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-50 dark:bg-indigo-900/30";
+    "font-semibold ring-2 ring-indigo-500/60 dark:ring-indigo-400/60 rounded px-2 bg-indigo-600/30 dark:bg-indigo-500/30 text-white"; // unified white text on colored translucent background
   // Thresholds (assumption): only highlight winner if percent diff >= 5% or absolute diff >= 2K.
   const MIN_PCT_FOR_HIGHLIGHT = 5; // %
   const MIN_ABS_FOR_HIGHLIGHT = 2000; // dollars
 
   return (
     <section className="space-y-3">
-      <h2 className="text-xl font-semibold">
+      <h2 className="text-xl font-semibold text-white">
         ARR by Employee Bucket & Touch Status
       </h2>
-      <p className="text-sm text-slate-600 dark:text-slate-400 max-w-prose">
+      <p className="text-sm text-slate-300 max-w-prose">
         Average ARR per employee band comparing untouched vs. touched accounts.
         Touched value shows the best-performing engagement tier (or a range when
         lower than untouched).
@@ -22,7 +22,7 @@ export default async function EmployeeBucketArrTable() {
       <div className="overflow-auto border border-slate-300 dark:border-slate-600 rounded">
         <table className="min-w-[640px] text-sm">
           <thead>
-            <tr className="bg-slate-100 dark:bg-slate-800">
+            <tr className="bg-slate-100 dark:bg-slate-800 text-slate-900">
               <th className="text-left font-semibold p-2">Employee Bucket</th>
               <th className="text-left font-semibold p-2">Untouched ARR</th>
               <th className="text-left font-semibold p-2">Touched ARR</th>

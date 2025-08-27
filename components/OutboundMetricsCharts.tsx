@@ -248,16 +248,18 @@ export default function OutboundMetricsCharts() {
 
       {/* KPI Tiles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <div className="border rounded p-4 bg-slate-50 dark:bg-slate-800/40">
-          <h3 className="font-semibold mb-1">Coverage</h3>
-          <p>
+        <div className="border border-slate-600/60 rounded p-4 bg-slate-900/70 backdrop-blur-sm text-white">
+          <h3 className="font-semibold mb-1 text-white">Coverage</h3>
+          <p className="text-white">
             {fmt(kpis.coveragePct, { maximumFractionDigits: 0 })}% accounts
             touched
           </p>
         </div>
-        <div className="border rounded p-4 bg-slate-50 dark:bg-slate-800/40">
-          <h3 className="font-semibold mb-1">Avg ARR (Touched vs Untouched)</h3>
-          <p>
+        <div className="border border-slate-600/60 rounded p-4 bg-slate-900/70 backdrop-blur-sm text-white">
+          <h3 className="font-semibold mb-1 text-white">
+            Avg ARR (Touched vs Untouched)
+          </h3>
+          <p className="text-white">
             {fmt(kpis.avgArrTouched)}K vs {fmt(kpis.avgArrUntouched)}K
             {kpis.avgArrTouched && kpis.avgArrUntouched && (
               <span className="ml-2 text-xs text-emerald-600">
@@ -266,11 +268,11 @@ export default function OutboundMetricsCharts() {
             )}
           </p>
         </div>
-        <div className="border rounded p-4 bg-slate-50 dark:bg-slate-800/40">
-          <h3 className="font-semibold mb-1">
+        <div className="border border-slate-600/60 rounded p-4 bg-slate-900/70 backdrop-blur-sm text-white">
+          <h3 className="font-semibold mb-1 text-white">
             Win Rate (Touched vs Untouched)
           </h3>
-          <p>
+          <p className="text-white">
             {fmt(kpis.winTouched)}% vs {fmt(kpis.winUntouched)}%
             {kpis.winTouched && kpis.winUntouched && (
               <span className="ml-2 text-xs text-emerald-600">
@@ -279,11 +281,11 @@ export default function OutboundMetricsCharts() {
             )}
           </p>
         </div>
-        <div className="border rounded p-4 bg-slate-50 dark:bg-slate-800/40">
-          <h3 className="font-semibold mb-1">
+        <div className="border border-slate-600/60 rounded p-4 bg-slate-900/70 backdrop-blur-sm text-white">
+          <h3 className="font-semibold mb-1 text-white">
             Avg Logins (Touched vs Untouched)
           </h3>
-          <p>
+          <p className="text-white">
             {fmt(kpis.usageTouched)} vs {fmt(kpis.usageUntouched)}
             {kpis.usageTouched && kpis.usageUntouched && (
               <span className="ml-2 text-xs text-emerald-600">

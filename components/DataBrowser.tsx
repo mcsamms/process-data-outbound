@@ -277,7 +277,7 @@ export function DataBrowser({
             >
               Clear Filters
             </button>
-            <span style={{ fontSize: 12 }}>
+            <span style={{ fontSize: 12, color: "#ffffff" }}>
               Rows: {filtered.length.toLocaleString()} (showing{" "}
               {pageRows.length} of {data.length.toLocaleString()})
             </span>
@@ -307,7 +307,7 @@ export function DataBrowser({
             >
               Prev 100
             </button>
-            <span style={{ fontSize: 12 }}>
+            <span style={{ fontSize: 12, color: "#ffffff" }}>
               Page {currentPage + 1} / {totalPages}
             </span>
             <button
