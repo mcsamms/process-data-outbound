@@ -77,6 +77,7 @@ export async function computeTouchTiming(): Promise<TouchTimingResult> {
       const f = Date.parse(firstTouch);
       if (Number.isFinite(s) && Number.isFinite(f)) {
         daysDiff = Math.floor((f - s) / 86400000); // ms per day
+        if (daysDiff < 0) daysDiff = 0; // clamp anomalous pre-signup outbound dates
       }
       if (daysDiff == null)
         bucket = "Never touched"; // fallback
@@ -121,6 +122,7 @@ export async function computeTouchTiming(): Promise<TouchTimingResult> {
       const f = Date.parse(firstTouch);
       if (Number.isFinite(s) && Number.isFinite(f)) {
         daysDiff = Math.floor((f - s) / 86400000);
+        if (daysDiff < 0) daysDiff = 0;
       }
       if (daysDiff == null) bucket = "Never touched";
       else if (daysDiff <= 30) bucket = "Early";
